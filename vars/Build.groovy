@@ -1,5 +1,6 @@
 import groovy.json.*
-@NonCps
+
+@NonCPS
 create(){
 def jsonSlurper = new JsonSlurper()
 def reader = new BufferedReader(new InputStreamReader(new FileInputStream("/var/lib/jenkins/workspace/normalpro/Build.json"),"UTF-8"))
