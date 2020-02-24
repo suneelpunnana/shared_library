@@ -4,7 +4,7 @@ import groovy.json.*
 create(){
 
 def jsonSlurper = new JsonSlurper()
-def reader = new BufferedReader(new InputStreamReader(new FileInputStream("/var/lib/jenkins/workspace/${JOB_NAME}/Build.json"),"UTF-8"))
+def reader = new BufferedReader(new InputStreamReader(new FileInputStream("/var/lib/jenkins/workspace/normalpro/Build.json"),"UTF-8"))
 def resultJson = jsonSlurper.parse(reader)
      println resultJson[0].number
 }
