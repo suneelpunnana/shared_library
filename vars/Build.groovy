@@ -6,7 +6,7 @@ create(){
 def jsonSlurper = new JsonSlurper()
 def reader = new BufferedReader(new InputStreamReader(new FileInputStream("/var/lib/jenkins/workspace/normalpro/Build.json"),"UTF-8"))
 def resultJson = jsonSlurper.parse(reader)
-def final= resultJson.builds[0].number
+println(resultJson.builds[0].number)
 }
     
     def call()
