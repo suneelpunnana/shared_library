@@ -2,7 +2,7 @@ def create(){
  
 def resultJson = readJSON file : 'Build.json'
 println(resultJson)
-    def total = resultJson.builds.length
+    /*def total = resultJson.builds.length
     def suc=0
     def fail=0
     def none=0
@@ -18,7 +18,7 @@ println(resultJson)
     }
     println(resultJson.builds[0].number)
     println(suc)
-    println(fail)
+    println(fail)*/
 }
     
     def call()
