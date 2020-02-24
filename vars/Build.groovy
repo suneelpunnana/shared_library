@@ -1,4 +1,4 @@
-def call(jobname)
+def call()
 {
-  sh "curl -s http://3.15.229.74:8080/job/${jobname}/lastBuild/api/json -u admin:11cfd35185f955e0f4f547669ee81ebc7a"
+  sh "curl -s http://52.14.229.175:8080/job/normalpro/lastBuild/api/json -u suneel:11035ac86f58bc32d03d8e873b7cc063a3 -o build.json"
 }
