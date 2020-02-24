@@ -7,6 +7,7 @@ def jsonSlurper = new JsonSlurper()
 def reader = new BufferedReader(new InputStreamReader(new FileInputStream("/var/lib/jenkins/workspace/${JOB_NAME}/BranchSha.json"),"UTF-8"))
 def resultJson = jsonSlurper.parse(reader)
      println resultJson.id.size()
+}
     
     def call()
 {
