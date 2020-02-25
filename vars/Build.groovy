@@ -12,11 +12,11 @@ create(){
 def jsonSlurper = new JsonSlurper()
 def reader = new BufferedReader(new InputStreamReader(new FileInputStream("/var/lib/jenkins/workspace/normalpro/Build.json"),"UTF-8"))
 def resultJson = jsonSlurper.parse(reader)
-def size = resultJson.builds[0].number
+int size = resultJson.builds[0].number
    
     println("total number of builds:"+resultJson.builds[0].number)
-   def countS=0;
-   def countF=0;
+   int countS=0;
+   int countF=0;
    for(int i=0;i<size;i++){
       if(resultJson.builds[i].result=="SUCCESS"){
          countS++;
