@@ -27,6 +27,8 @@ def size = resultJson.builds[0].number
       }
       
    }
+    println("total number of successfull builds:"+countS)
+    println("total number of FAILURE builds:"+countF)
      
    
 }
