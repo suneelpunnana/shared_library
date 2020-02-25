@@ -7,7 +7,7 @@ def reader = new BufferedReader(new InputStreamReader(new FileInputStream("/var/
 def resultJson = jsonSlurper.parse(reader)
   
     println("total number of builds:"+resultJson.builds[0].number)
-   /*int countS=0;
+   int countS=0;
    int countF=0;
    for(int i=0;i<resultJson.builds[0].number;i++){
       if(resultJson.builds[i].result=="SUCCESS"){
@@ -20,7 +20,7 @@ def resultJson = jsonSlurper.parse(reader)
       
    }
     println("total number of successfull builds:"+countS)
-    println("total number of FAILURE builds:"+countF)*/
+    println("total number of FAILURE builds:"+countF)
      
    
 }
