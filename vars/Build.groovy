@@ -21,6 +21,7 @@ def resultJson = jsonSlurper.parse(reader)
    }
     println("total number of successfull builds:"+countS)
     println("total number of FAILURE builds:"+countF)
+ 
      
    
 }
