@@ -16,6 +16,7 @@ def size = resultJson.builds[0].number
    
     println("total number of builds:"+resultJson.builds[0].number)
    def countS=0;
+   def countF=0;
    for(int i=0;i<size;i++){
       if(resultJson.builds[i].result=="SUCCESS"){
          countS++;
