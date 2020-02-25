@@ -13,7 +13,7 @@ def resultJson = jsonSlurper.parse(reader)
       if(resultJson.builds[i].result=="SUCCESS"){
          countS++;
       }
-      else{
+      else if(resultJson.builds[i].result=="FAILURE"){
          countF++;
          
       }
