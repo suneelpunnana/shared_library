@@ -13,10 +13,8 @@ def resultJson = jsonSlurper.parse(reader)
          countS++;
       }    
    }
-    println("total number of builds by suneel:"+countS)
-    
- 
-     
+    println("total number of builds by suneel:"+countS) 
+}    
      
 
 def call()
