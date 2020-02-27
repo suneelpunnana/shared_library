@@ -6,7 +6,7 @@ def jsonSlurper = new JsonSlurper()
 def reader = new BufferedReader(new InputStreamReader(new FileInputStream("/var/lib/jenkins/workspace/normalpro/username.json"),"UTF-8"))
 def resultJson = jsonSlurper.parse(reader)
     int countS=0;
-  
+    int countv=0;
    def build=resultJson.users[0].project.builds[0].actions[2].buildsByBranchName.master.buildNumber
  
   println("total number of builds"+build)
@@ -14,9 +14,13 @@ def resultJson = jsonSlurper.parse(reader)
    for(int i=0;i<build;i++){
       if(resultJson.users[0].project.builds[i].actions[0].causes[0].userName=="suneelpunnana"){
          countS++;
-      }    
+      } else{
+       countv++;
+      }
+    
    }
     println("total number of builds by suneel:"+countS) 
+     println("total number of builds by suneel:"+countv)
 }    
      
 
