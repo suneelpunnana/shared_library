@@ -7,8 +7,8 @@ def reader = new BufferedReader(new InputStreamReader(new FileInputStream("/var/
 def resultJson = jsonSlurper.parse(reader)
     int countS=0;
    int countF=0;
-    int total=resultJson.users[0].project.builds.length
-   for(int i=0;i<total;i++){
+   def build=resultJson.users[0].project.builds
+   for(int i=0;i<build.length;i++){
       if(resultJson.users[0].project.builds[i].actions[0].causes[0].userName=="suneelpunnana"){
          countS++;
       }    
