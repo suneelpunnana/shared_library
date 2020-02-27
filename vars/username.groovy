@@ -7,6 +7,10 @@ def reader = new BufferedReader(new InputStreamReader(new FileInputStream("/var/
 def resultJson = jsonSlurper.parse(reader)
     int countS=0;
     int countv=0;
+ int success_sunil=0;
+ int fail_sunil=0;
+ int success_vicky=0;
+ int fail_vicky=0;
  int countN=0;
    def build=resultJson.users[0].project.builds[0].actions[2].buildsByBranchName.master.buildNumber
  
@@ -15,16 +19,27 @@ def resultJson = jsonSlurper.parse(reader)
    for(int i=0;i<build;i++){
       if(resultJson.users[0].project.builds[i].actions[0].causes[0].userName=="suneelpunnana"){
          countS++;
-      }else if(resultJson.users[0].project.builds[i].actions[0].causes[0].userName=="noreply") {
-       countN++;
-      }else{
+          if(resultJson.users[0].project.builds[i].result=="SUCCESS"){
+           success_sunil++;
+            }else{
+           fail_sunil++;
+            }
+       }else{
        countv++;
+       if(resultJson.users[0].project.builds[i].result=="SUCCESS"){
+        success_vicky++;
+         }else{
+        fail_vicky++;
+         }
       }
     
    }
     println("total number of builds by suneel:"+countS) 
-     println("total number of builds by no one:"+countN)
-     println("total number of builds by vicky:"+countv)
+    println("total number of success builds by suneel:"+success_sunil) 
+    println("total number of failed builds by suneel:"+fail_sunil) 
+     println("total number of builds by vicky:"+countv) 
+    println("total number of success builds by suneel:"+success_vicky) 
+     println("total number of failed builds by suneel:"+fail_vicky) 
 }    
      
 
