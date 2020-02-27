@@ -38,8 +38,8 @@ def resultJson = jsonSlurper.parse(reader)
     println("total number of success builds by suneel:"+success_sunil) 
     println("total number of failed builds by suneel:"+fail_sunil) 
      println("total number of builds by vicky:"+countv) 
-    println("total number of success builds by suneel:"+success_vicky) 
-     println("total number of failed builds by suneel:"+fail_vicky) 
+    println("total number of success builds by vicky:"+success_vicky) 
+     println("total number of failed builds by vicky:"+fail_vicky) 
 }    
      
 
