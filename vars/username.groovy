@@ -8,6 +8,7 @@ def resultJson = jsonSlurper.parse(reader)
     int countS=0;
    int countF=0;
    def build=resultJson.users[0].project.builds
+  println("total number of builds by suneel:"+build)
    for(int i=0;i<build.length;i++){
       if(resultJson.users[0].project.builds[i].actions[0].causes[0].userName=="suneelpunnana"){
          countS++;
