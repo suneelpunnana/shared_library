@@ -48,6 +48,6 @@ def resultJson = jsonSlurper.parse(reader)
 
 def call()
 {
-    sh "curl -XGET -g http://52.14.229.175:8080/asynchPeople/api/xml?depth=2 -o username.json"
+    sh "curl -XGET -g http://52.14.229.175:8080/asynchPeople/api/xml?depth=3 -o username.json"
     create()
 }
