@@ -6,6 +6,7 @@ create(){
 def reader = new BufferedReader(new InputStreamReader(new FileInputStream("/var/lib/jenkins/workspace/normalpro/Build.json"),"UTF-8"))
 def resultJson = jsonSlurper.parse(reader)*/
 import groovy.json.JsonSlurper
+  def reader = new BufferedReader(new InputStreamReader(new FileInputStream("/var/lib/jenkins/workspace/normalpro/Build.json"),"UTF-8"))
 
 def parsedjson = new JsonSlurper().parseText(json)
   
