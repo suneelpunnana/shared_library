@@ -31,5 +31,9 @@ def resultJson = jsonSlurper.parse(reader)
     sh "curl -XGET -g http://52.14.229.175:8080/job/normalpro/api/json?tree=builds[number,status,timestamp,id,result] -u suneel:11035ac86f58bc32d03d8e873b7cc063a3 -o Build.json"
     create()
 }
+def result = ​parsedjson.findAll { it.value instanceof List } 
+          .values()                                          
+          .flatten()                                         
+          .collect { [it.number, it.status, it.result] }  
 
 
