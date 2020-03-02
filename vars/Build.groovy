@@ -34,6 +34,6 @@ def resultJson = jsonSlurper.parse(reader)
 def result = ​parsedjson.findAll { it.value instanceof List } 
           .values()                                          
           .flatten()                                         
-          .collect { [it.number, it.status, it.result] }  
+          .collect { [it.id, it.result] }  
 
 
