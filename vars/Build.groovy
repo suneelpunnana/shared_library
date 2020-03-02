@@ -2,9 +2,12 @@ import groovy.json.*
 
 @NonCPS
 create(){
-def jsonSlurper = new JsonSlurper()
+/*def jsonSlurper = new JsonSlurper()
 def reader = new BufferedReader(new InputStreamReader(new FileInputStream("/var/lib/jenkins/workspace/normalpro/Build.json"),"UTF-8"))
-def resultJson = jsonSlurper.parse(reader)
+def resultJson = jsonSlurper.parse(reader)*/
+import groovy.json.JsonSlurper
+
+def parsedjson = new JsonSlurper().parseText(json)
   
     println("total number of builds:"+resultJson.builds[0].number)
    int countS=0;
