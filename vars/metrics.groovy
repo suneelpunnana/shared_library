@@ -5,7 +5,7 @@ create(){
 def jsonSlurper = new JsonSlurper()
 def reader = new BufferedReader(new InputStreamReader(new FileInputStream("/var/lib/jenkins/workspace/normalpro/username.json"),"UTF-8"))
 def resultJson = jsonSlurper.parse(reader)
- if(resultJson.users[1].user.property[10].address=="suneelpunnana3@gmail.com"){
+ if(resultJson.users[1].user.property[9].address=="suneelpunnana3@gmail.com"){
   def name=users[1].user.fullName
   println(name)
  }
