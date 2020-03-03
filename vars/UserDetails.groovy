@@ -10,7 +10,7 @@ def jsonString = JSON
 def jsonObj = readJSON text: jsonString
 def mailcount = jsonObj.config.emails.email.size()
 
-sh "curl -XGET -g http://52.14.229.175:8080/job/jenkins/api/json?tree=builds[id,result,changeSets[items[authorEmail]]] -u suneel:11035ac86f58bc32d03d8e873b7cc063a3 -o username.json"
+sh "curl -X GET -g http://52.14.229.175:8080/job/jenkins/api/json?tree=builds[id,result,changeSets[items[authorEmail]]] -u suneel:11035ac86f58bc32d03d8e873b7cc063a3 -o username.json"
 	def jsonSlurper = new JsonSlurper()
 def reader = new BufferedReader(new InputStreamReader(new FileInputStream("/var/lib/jenkins/workspace/normalpro/username.json"),"UTF-8"))
 def resultJson = jsonSlurper.parse(reader)
