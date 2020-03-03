@@ -21,6 +21,7 @@ def resultJson = jsonSlurper.parse(reader)
       if(resultJson.users[0].project.builds[i].actions[0].causes[0].userName=="suneelpunnana"){
          countS++;
 	      JSON.add(JsonOutput.toJson(resultJson[i]))
+	      print(JSON) 
           if(resultJson.users[0].project.builds[i].result=="SUCCESS"){
            success_sunil++;
             }else{
