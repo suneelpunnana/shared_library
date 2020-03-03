@@ -15,10 +15,12 @@ def resultJson = jsonSlurper.parse(reader)
    def build=resultJson.users[0].project.builds[0].actions[2].buildsByBranchName.master.buildNumber
  
   println("total number of builds"+build)
+	List<String> JSON = new ArrayList<Strng>();
 
    for(int i=0;i<build;i++){
       if(resultJson.users[0].project.builds[i].actions[0].causes[0].userName=="suneelpunnana"){
          countS++;
+	      JSON.add(JsonOutput.toJson(resultJson[i]))
           if(resultJson.users[0].project.builds[i].result=="SUCCESS"){
            success_sunil++;
             }else{
