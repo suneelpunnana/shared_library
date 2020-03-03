@@ -9,10 +9,11 @@ def jsonString = JSON
 def jsonObj = readJSON text: jsonString
 def mailcount = jsonObj.config.emails.email.size()
 
-sh "curl  -X GET  -u rig:rigaDapt@devOps '${IP}/rest/api/latest/result/LAT-WEB.json?max-result=50&expand=results.result.artifacts&expand=changes.change.files&start-index=0' -o output.json"
+sh "curl -XGET -g http://52.14.229.175:8080/job/jenkins/api/json?tree=builds[id,result,changeSets[items[authorEmail]]] -o username.json"
 	def jsonSlurper = new JsonSlurper()
-def reader = new BufferedReader(new InputStreamReader(new FileInputStream("/var/lib/jenkins/workspace/${JOB_NAME}/output.json"),"UTF-8"))
+def reader = new BufferedReader(new InputStreamReader(new FileInputStream("/var/lib/jenkins/workspace/normalpro/username.json"),"UTF-8"))
 def resultJson = jsonSlurper.parse(reader)
+	def build=resultJson.builds[0].id
 
 
  
@@ -39,22 +40,22 @@ def resultJson = jsonSlurper.parse(reader)
 	   def cns=0
 	   def cnf=0
     def email=jsonObj.config.emails.email[j] 
-  for(i=0;i<50;i++)
+  for(i=0;i<build;i++)
   {
  
    
-   def state=resultJson.results.result[i].buildState
+   def state=resultJson.builds[i].result
   
-   if(resultJson.results.result[i].buildReason.contains(email) && state.equals("Successful"))
+   if(resultJson.builds[i].changeSets.contains(email) && state.equals("Successful"))
    {
    
-    USERS.add(resultJson.results.result[i])
+    USERS.add(resultJson.builds[i])
 	  
    }
-   else if(resultJson.results.result[i].buildReason.contains(email) && state.equals("Failed"))
+   else if(resultJson.builds[i].changeSets.contains(email) && state.equals("Failed"))
    {
 	   
-	   USERF.add(resultJson.results.result[i])
+	   USERF.add(resultJson.builds[i])
    }
    }
    cns=USERS.size()
@@ -70,28 +71,28 @@ def resultJson = jsonSlurper.parse(reader)
    LISTFAILURE.add(["email":email,"failure":LISF[j],"Failure_cnt":cnf])
    USERF.clear()
    }
-	for(i=0;i<50;i++)
+	for(i=0;i<build;i++)
   {
-   def date=resultJson.results.result[i].buildCompletedDate
-   def state=resultJson.results.result[i].buildState
+   //def date=resultJson.results.result[i].buildCompletedDate
+   def state=resultJson.builds[i].result
 
    
   if(state.equals("Successful"))
   {
    
  
-   SUCCESS.add(resultJson.results.result[i])
+   SUCCESS.add(resultJson.builds[i])
      
   }
    else if(state.equals("Failed"))
    {
     
-       FAILURE.add(resultJson.results.result[i])
+       FAILURE.add(resultJson.builds[i])
      
    }
   }
 	
-		    jsonBuilder.Bamboo(
+		    jsonBuilder.Jenkins(
   "teamsuccess" : SUCCESS,
   "teamsuccessbuild_cnt" : SUCCESS.size(),
   "teamfailure" : FAILURE,
@@ -100,7 +101,7 @@ def resultJson = jsonSlurper.parse(reader)
   "individualfailure": LISTFAILURE
   )
 	
-File file = new File("/var/lib/jenkins/workspace/${JOB_NAME}/bamboo.json")
+File file = new File("/var/lib/jenkins/workspace/${JOB_NAME}/jenkins.json")
 file.write(jsonBuilder.toPrettyString())
 	//def reader1 = new BufferedReader(new InputStreamReader(new FileInputStream("/var/lib/jenkins/workspace/${JOB_NAME}/bamboo.json"),"UTF-8"))
 //def resu = jsonSlurper.parse(reader1)
