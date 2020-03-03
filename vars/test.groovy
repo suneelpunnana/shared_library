@@ -1,5 +1,5 @@
 import groovy.json.*
-import java.io.File
+import java.io.Serializable
 @NonCPS
 create(){
 def jsonSlurper = new JsonSlurper()
