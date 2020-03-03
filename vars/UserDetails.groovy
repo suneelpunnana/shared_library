@@ -9,12 +9,14 @@ def call(JSON)
 def jsonString = JSON
 def jsonObj = readJSON text: jsonString
 def mailcount = jsonObj.config.emails.email.size()
+	print(mailcount)
 
 sh "curl -X GET -g http://52.14.229.175:8080/job/jenkins/api/json?tree=builds[id,result,changeSets[items[authorEmail]]] -u suneel:11035ac86f58bc32d03d8e873b7cc063a3 -o username.json"
 	def jsonSlurper = new JsonSlurper()
 def reader = new BufferedReader(new InputStreamReader(new FileInputStream("/var/lib/jenkins/workspace/normalpro/username.json"),"UTF-8"))
 def resultJson = jsonSlurper.parse(reader)
 	def build=resultJson.builds[0].id
+	print(build)
 
 
  
@@ -41,12 +43,14 @@ def resultJson = jsonSlurper.parse(reader)
 	   def cns=0
 	   def cnf=0
     def email=jsonObj.config.emails.email[j] 
+	   print(email)
   for(i=0;i<build;i++)
   {
  
    
    def state=resultJson.builds[i].result
 	  def size=resultJson.builds[i].changeSets.size()
+	  print(size)
   
    if(resultJson.builds[i].changeSets[size-1].items[0].authorEmail.equals(email) && state.equals("Successful"))
    {
