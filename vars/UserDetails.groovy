@@ -3,7 +3,7 @@ import groovy.json.JsonOutput
 
 	
 
-def call(JSON,IP)
+def call(JSON)
 {
 def jsonString = JSON
 def jsonObj = readJSON text: jsonString
