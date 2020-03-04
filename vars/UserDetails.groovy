@@ -17,7 +17,7 @@ def reader = new BufferedReader(new InputStreamReader(new FileInputStream("/var/
 def resultJson = jsonSlurper.parse(reader)
 	def b=resultJson.builds[0].id
 	//int s=Integer.parseInt(build);
-	def intbuild = b.toInteger()
+	def build = b.toInteger()
 	print(build)
 
 
@@ -53,7 +53,7 @@ def resultJson = jsonSlurper.parse(reader)
    def state=resultJson.builds[i].result
    def n=resultJson.builds[i].changeSets.size()
 	//int size=Integer.parseInt(n);
-	  def intsize = n.toInteger()
+	  def size = n.toInteger()
    print("changesets"+size)
   
    if(resultJson.builds[i].changeSets[size-1].items[0].authorEmail.equals(email) && state.equals("Successful"))
