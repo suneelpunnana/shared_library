@@ -16,6 +16,7 @@ sh "curl -X GET -g http://52.14.229.175:8080/job/jenkins/api/json?tree=builds[id
 def reader = new BufferedReader(new InputStreamReader(new FileInputStream("/var/lib/jenkins/workspace/${JOB_NAME}/username.json"),"UTF-8"))
 def resultJson = jsonSlurper.parse(reader)
 	def build=resultJson.builds[0].id
+	int s=Integer.parseInt(build)
 	print(build)
 
 
@@ -44,7 +45,7 @@ def resultJson = jsonSlurper.parse(reader)
 	   def cnf=0
     def email=jsonObj.config.emails.email[j] 
 	   print(email)
-  for(i=0;i<50;i++)
+  for(i=0;i<s;i++)
   {
  
    
@@ -77,7 +78,7 @@ def resultJson = jsonSlurper.parse(reader)
    LISTFAILURE.add(["email":email,"failure":LISF[j],"Failure_cnt":cnf])
    USERF.clear()
    }
-	for(i=0;i<50;i++)
+	for(i=0;i<s;i++)
   {
    //def date=resultJson.results.result[i].buildCompletedDate
    def state=resultJson.builds[i].result
