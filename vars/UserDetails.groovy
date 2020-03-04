@@ -15,10 +15,10 @@ sh "curl -X GET -g http://52.14.229.175:8080/job/jenkins/api/json?tree=builds[id
 	def jsonSlurper = new JsonSlurper()
 def reader = new BufferedReader(new InputStreamReader(new FileInputStream("/var/lib/jenkins/workspace/${JOB_NAME}/username.json"),"UTF-8"))
 def resultJson = jsonSlurper.parse(reader)
-	def build=resultJson.builds[0].id
+	def b=resultJson.builds[0].id
 	//int s=Integer.parseInt(build);
-	def intValue = build.toInteger()
-	print(Value)
+	def intbuild = b.toInteger()
+	print(build)
 
 
  
