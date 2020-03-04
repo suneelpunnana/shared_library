@@ -16,8 +16,9 @@ sh "curl -X GET -g http://52.14.229.175:8080/job/jenkins/api/json?tree=builds[id
 def reader = new BufferedReader(new InputStreamReader(new FileInputStream("/var/lib/jenkins/workspace/${JOB_NAME}/username.json"),"UTF-8"))
 def resultJson = jsonSlurper.parse(reader)
 	def build=resultJson.builds[0].id
-	int s=Integer.parseInt(build);
-	print(s)
+	//int s=Integer.parseInt(build);
+	def intValue = strnumber.toInteger()
+	print(Value)
 
 
  
@@ -51,7 +52,8 @@ def resultJson = jsonSlurper.parse(reader)
    
    def state=resultJson.builds[i].result
    def n=resultJson.builds[i].changeSets.size()
-	int size=Integer.parseInt(n);
+	//int size=Integer.parseInt(n);
+	  def intsize = n.toInteger()
    print("changesets"+size)
   
    if(resultJson.builds[i].changeSets[size-1].items[0].authorEmail.equals(email) && state.equals("Successful"))
