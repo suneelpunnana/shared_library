@@ -46,7 +46,7 @@ def resultJson = jsonSlurper.parse(reader)
 	   def cnf=0
     def email=jsonObj.config.emails.email[j] 
 	   print(email)
-  for(i=0;i<s;i++)
+  for(i=0;i<build;i++)
   {
  
    
@@ -81,7 +81,7 @@ def resultJson = jsonSlurper.parse(reader)
    LISTFAILURE.add(["email":email,"failure":LISF[j],"Failure_cnt":cnf])
    USERF.clear()
    }
-	for(i=0;i<s;i++)
+	for(i=0;i<build;i++)
   {
    //def date=resultJson.results.result[i].buildCompletedDate
    def state=resultJson.builds[i].result
