@@ -21,12 +21,13 @@ create(String TeamName){
   LIST.add(["metric":"Team Failure Builds","Value":score,"Tool":"JENKINS"])
   }
   
+  
   jsonBuilder(
     "Teamname":TeamName,
     "Metrics" : LIST
     
     )
-  File file = new File("/var/lib/jenkins/workspace/${JOB_NAME}/SONAR.json")
+  File file = new File("/var/lib/jenkins/workspace/${JOB_NAME}/JenkinsScore.json")
   file.write(jsonBuilder.toPrettyString())
 }
 
