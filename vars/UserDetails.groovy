@@ -23,7 +23,7 @@ def resultJson = jsonSlurper.parse(reader)
 
  
 
-
+ int[] score1= new int[100]
   List<String> USERS = new ArrayList<String>()
 	List<String> USERF = new ArrayList<String>()
  List<String>  LISTSUCCESS=new ArrayList<String>()
@@ -32,6 +32,22 @@ def resultJson = jsonSlurper.parse(reader)
 	List<String> LISTFAILURE=new ArrayList<String>()
 	List<String> SUCCESS = new ArrayList<String>()
     List<String> FAILURE = new ArrayList<String>()
+	for(i=0;i<jsonStringa.size();i++)
+  { 
+    int score=0
+    String name="  "
+	  String metric=" "
+if(jsonStringa[i].contains("Jenkins"))
+    {
+      name="Jenkins"
+	    metric="commits"
+
+def jsonObja = readJSON text: jsonStringa[i]
+int total=jsonObja.Jenkins.Commit_count
+
+ score=total
+ 
+  }
 	
 
 
