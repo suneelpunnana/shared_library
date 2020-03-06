@@ -32,23 +32,8 @@ def resultJson = jsonSlurper.parse(reader)
 	List<String> LISTFAILURE=new ArrayList<String>()
 	List<String> SUCCESS = new ArrayList<String>()
     List<String> FAILURE = new ArrayList<String>()
-	for(i=0;i<jsonStringa.size();i++)
-  { 
-     if(jsonStringa[i].contains("jenkins"))
-    {
-      name="jenkins"
-	    metric="successful builds"
-    //  def jsonStringb = jenkins
-def jsonObjb = readJSON text: jsonStringa[i]
-  //println(jsonObj)
-  def scnt =jsonObjb.Bamboo.teamsuccessbuild_cnt
-      
- // def res=bamboo1.bamboo.teamsuccessbuild_cnt
- // def obj = JSON.parse(bamboo1)
- //println(cnt)
- score=scnt
 	
-    }
+    
 
  
 
