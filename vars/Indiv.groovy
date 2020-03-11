@@ -10,6 +10,9 @@ List<String> jsonStringa= new ArrayList<String>();
    jsonStringa.add(jenkins)
 	jsonStringa.add(sonar)
    List<String> LIST = new ArrayList<String>();
+	JSON<string> JSON = new ArrayList<String>();
+	for(k=0;k<ecount;i++)
+	{
    for(i=0;i<jsonStringa.size();i++)
   { 
     int score=0
@@ -21,43 +24,20 @@ List<String> jsonStringa= new ArrayList<String>();
 	  //  metric="commits"
 //def jsonStringa = bitbucket
 def jsonObja = readJSON text: jsonStringa[i]
-int total=jsonObja.bitbucket.Commit_count
+	    if(jsonObj.riglet_info.auth_users[K]==jsonObj.bitbucket.Individual_commits.Email)
+int total=jsonObja.bitbucket.Individual_commits.Commit_count
  // println(jsonObja)
   //println(total)
  
 	    LIST.add(["toolName":name,"metric":"commits","value":total])
       }
-      if(jsonStringa[i].contains("JENKINS"))
-    {
-      name="jenkins"
-      def jsonObjb = readJSON text: jsonStringa[i]
-	   // print jsonObjb
-      def total=jsonObjb.JENKINS.teambuild_cnt
-  def scnt =jsonObjb.JENKINS.teamsuccessbuild_cnt
-	    def fcnt=jsonObjb.JENKINS.teamfailurebuild_cnt
-	    LIST.add(["toolName":name,"metricName":"total_builds","value":total])
-	    LIST.add(["toolName":name,"metricName":"successful_builds","value":scnt])
-	    LIST.add(["toolName":name,"metricName":"failure_builds","value":fcnt])
-      }
-      if(jsonStringa[i].contains("Sonar"))
-    {
-	    name="sonar"
-	    def jsonObjc = readJSON text: jsonStringa[i]
-	    //print jsonObjc
-	    for(i=0;i<jsonObjc.Sonar.Metrics.component.measures.size();i++){
-		    //print jsonObjc.Sonar.Metrics.component.measures
-    def sonar_metric=jsonObjc.Sonar.Metrics.component.measures[i].metric
-		    def d=jsonObjc.Sonar.Metrics.component.measures[i].value
-    double data = Double.parseDouble(d); 
-       LIST.add(["toolName":name,"metricName":sonar_metric,"value":data])
-	    }
-    }
      }
+		JSON.add(["team_member_name":jsonObj.riglet_info.auth_users[K],"teamname":team,"metrics" : LIST])
+	}
+	
 def jsonBuilder = new groovy.json.JsonBuilder()
-
 jsonBuilder(
- "teamName":team,
-  "metrics" : LIST
+ "team_members":JSON
   
 ) 
   
