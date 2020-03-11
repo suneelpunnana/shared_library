@@ -118,7 +118,7 @@ def resultJson = jsonSlurper.parse(reader)
   "teambuilds" : resultJson,		    
   "teamsuccess" : SUCCESS,
   "teamsuccessbuild_cnt" : SUCCESS.size(),
-  "teamfailure" : FAILURE,
+  "teamfailure" : FAILURE, 
   "teamfailurebuild_cnt" :FAILURE.size(),
   "individualsuccess": LISTSUCCESS,
   "individualfailure": LISTFAILURE
