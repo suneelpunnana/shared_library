@@ -24,7 +24,7 @@ List<String> jsonStringa= new ArrayList<String>();
 	  //  metric="commits"
 //def jsonStringa = bitbucket
 def jsonObja = readJSON text: jsonStringa[i]
-	    if(jsonObj.riglet_info.auth_users[k]==jsonObj.bitbucket.Individual_commits.Email)
+	    if(jsonObj.riglet_info.auth_users[k]==jsonObja.bitbucket.Individual_commits.Email)
 int total=jsonObja.bitbucket.Individual_commits.Commit_count
  // println(jsonObja)
   //println(total)
