@@ -11,7 +11,7 @@ List<String> jsonStringa= new ArrayList<String>();
 	//jsonStringa.add(sonar)
    List<String> LIST = new ArrayList<String>();
 	List<String> JSON = new ArrayList<String>();
-	for(k=0;k<ecount;i++)
+	for(k=0;k<ecount;k++)
 	{
    for(i=0;i<jsonStringa.size();i++)
   { 
