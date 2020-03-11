@@ -14,9 +14,9 @@ println("No of users "+ ecount)
 println(Key)
 println(repoName)
 // Date date = new Date() 
-withCredentials([usernamePassword(credentialsId: 'bitbucket_cred', passwordVariable: 'pass', usernameVariable: 'userId')]) { 
-	sh "curl -X GET  -H -d  -u ${userId}:${pass} http://18.224.68.30:7990/rest/api/1.0/projects/${Key}/repos/${repoName}/commits -o outputbitbucket.json"
- } 
+//withCredentials([usernamePassword(credentialsId: 'bitbucket_cred', passwordVariable: 'pass', usernameVariable: 'userId')]) { 
+	sh "curl -X GET  -H -d  -u bhavya7:bhaVya@3 http://18.224.68.30:7990/rest/api/1.0/projects/${Key}/repos/${repoName}/commits -o outputbitbucket.json"
+// } 
 
 def jsonSlurper = new JsonSlurper()
 def resultJson = jsonSlurper.parse(new File("/var/lib/jenkins/workspace/${JOB_NAME}/outputbitbucket.json"))
