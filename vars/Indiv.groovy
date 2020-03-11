@@ -25,7 +25,8 @@ List<String> jsonStringa= new ArrayList<String>();
 //def jsonStringa = bitbucket
 def jsonObja = readJSON text: jsonStringa[i]
 	     println("bhavay")
-	    if(a==a){
+	    
+	    if("a"=="a"){
 		     println("bhavay")
 	    if(jsonObj.riglet_info.auth_users[k]==jsonObja.bitbucket.Individual_commits.Email){
 int total=jsonObja.bitbucket.Individual_commits.Commit_count
