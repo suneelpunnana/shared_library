@@ -1,14 +1,14 @@
 import groovy.json.*
 
-def call(jsondata,bitbucket,jenkins,sonar){
+def call(jsondata,bitbucket){
 def jsonString = jsondata
 def jsonObj = readJSON text: jsonString
 int ecount = jsonObj.riglet_info.auth_users.size()
 	def team=jsonObj.riglet_info.name
 List<String> jsonStringa= new ArrayList<String>();
   jsonStringa.add(bitbucket)
-   jsonStringa.add(jenkins)
-	jsonStringa.add(sonar)
+   //jsonStringa.add(jenkins)
+	//jsonStringa.add(sonar)
    List<String> LIST = new ArrayList<String>();
 	List<String> JSON = new ArrayList<String>();
 	for(k=0;k<ecount;i++)
