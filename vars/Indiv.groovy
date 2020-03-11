@@ -30,7 +30,7 @@ int total=jsonObja.bitbucket.Individual_commits.Commit_count
   //println(total)
  
 		    LIST.add(["toolName":name,"metric":"commits","value":total])
-	    println LIST}
+	    echo LIST}
       }
      }
 		JSON.add(["team_member_name":jsonObj.riglet_info.auth_users[k],"teamname":team,"metrics" : LIST])
