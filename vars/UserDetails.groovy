@@ -8,22 +8,26 @@ def call(JSON)
 {
 def jsonString = JSON
 def jsonObj = readJSON text: jsonString
-def mailcount = jsonObj.config.emails.email.size()
+def mailcount = jsonObj.riglet_info.auth_users.size()
+	String pro = jsonObj.ci.jobs.job.job_name
+	String ProjectName=pro.replaceAll("\\[", "").replaceAll("\\]","");
 	print(mailcount)
-
-sh "curl -X GET -g http://52.14.229.175:8080/job/jenkins/api/json?tree=builds[id,result,changeSets[items[authorEmail]]] -u suneel:11035ac86f58bc32d03d8e873b7cc063a3 -o username.json"
+	withCredentials([usernamePassword(credentialsId: 'jenkins_cred', passwordVariable: 'pass', usernameVariable: 'user')]) {
+//sh "curl -X GET -g http://52.14.229.175:8080/job/${JOB_NAME}/api/json?tree=builds[id,result,changeSets[items[authorEmail]]] -u suneel:11035ac86f58bc32d03d8e873b7cc063a3 -o username.json"
+	sh "curl -X GET -g http://18.224.172.87:8080/job/${ProjectName}/api/json?tree=builds[id,result,changeSets[items[authorEmail]]] -u ${user}:${pass} -o username.json"
+	}
 	def jsonSlurper = new JsonSlurper()
 def reader = new BufferedReader(new InputStreamReader(new FileInputStream("/var/lib/jenkins/workspace/${JOB_NAME}/username.json"),"UTF-8"))
 def resultJson = jsonSlurper.parse(reader)
-	def b=resultJson.builds[0].id
-	//int s=Integer.parseInt(build);
-	def build = b.toInteger()
+	def build=resultJson.builds[0].id
 	print(build)
+	int value = Integer.parseInt(build);
+	print(value)
 
 
  
 
- 
+
   List<String> USERS = new ArrayList<String>()
 	List<String> USERF = new ArrayList<String>()
  List<String>  LISTSUCCESS=new ArrayList<String>()
@@ -33,7 +37,7 @@ def resultJson = jsonSlurper.parse(reader)
 	List<String> SUCCESS = new ArrayList<String>()
     List<String> FAILURE = new ArrayList<String>()
 	
-    
+
 
  
 
@@ -44,29 +48,34 @@ def resultJson = jsonSlurper.parse(reader)
    {
 	   def cns=0
 	   def cnf=0
-    def email=jsonObj.config.emails.email[j] 
+    def email=jsonObj.riglet_info.auth_users[j]
 	   print(email)
-  for(i=0;i<build;i++)
+  for(i=1;i<value-1;i++)
   {
  
    
    def state=resultJson.builds[i].result
-   def n=resultJson.builds[i].changeSets.size()
-	//int size=Integer.parseInt(n);
-	  def size = n.toInteger()
-   print("changesets"+size)
-  
-   if(resultJson.builds[i].changeSets[size-1].items[0].authorEmail.equals(email) && state.equals("Successful"))
+	  print (state)
+   def s=resultJson.builds[i].changeSets.size()
+	  print (s)
+	  if (s>0){
+		  if(resultJson.builds[i].changeSets[s-1].items[0].authorEmail.equals(email) && state.equals("SUCCESS"))
+		  //print("insidejjjjjjjjjjjjjjjjjjjjjjjjjjjjj")
    {
    
     USERS.add(resultJson.builds[i])
+	   //print("insidejjjjjjjjjjjjjjjjjjjjjjjjjjjjj8888888888888888888888888888")
 	  
    }
-   else if(resultJson.builds[i].changeSets[size-1].items[0].authorEmail.equals(email) && state.equals("Failed"))
+   else if(resultJson.builds[i].changeSets[s-1].items[0].authorEmail.equals(email) && state.equals("FAILURE"))
    {
 	   
 	   USERF.add(resultJson.builds[i])
    }
+		  
+		  
+	  }
+	  //int len = s-1;
    }
    cns=USERS.size()
 
@@ -81,20 +90,21 @@ def resultJson = jsonSlurper.parse(reader)
    LISTFAILURE.add(["email":email,"failure":LISF[j],"Failure_cnt":cnf])
    USERF.clear()
    }
-	for(i=0;i<build;i++)
+	for(i=1;i<value;i++)
   {
    //def date=resultJson.results.result[i].buildCompletedDate
    def state=resultJson.builds[i].result
+	  print(state)
 
    
-  if(state.equals("Successful"))
+  if(state.equals("SUCCESS"))
   {
    
  
    SUCCESS.add(resultJson.builds[i])
      
   }
-   else if(state.equals("Failed"))
+   else if(state.equals("FAILURE"))
    {
     
        FAILURE.add(resultJson.builds[i])
@@ -102,9 +112,10 @@ def resultJson = jsonSlurper.parse(reader)
    }
   }
 	
- jsonBuilder.JENKINS(
-  //"totalteam_builds" 
-  "totalteam_buildsnumber" : resultJson.size(),		    
+		    jsonBuilder.JENKINS(
+  
+  "teambuild_cnt" : value,
+  "teambuilds" : resultJson,		    
   "teamsuccess" : SUCCESS,
   "teamsuccessbuild_cnt" : SUCCESS.size(),
   "teamfailure" : FAILURE,
@@ -115,6 +126,7 @@ def resultJson = jsonSlurper.parse(reader)
 	
 File file = new File("/var/lib/jenkins/workspace/${JOB_NAME}/jenkins.json")
 file.write(jsonBuilder.toPrettyString())
+	return jsonBuilder
 	//def reader1 = new BufferedReader(new InputStreamReader(new FileInputStream("/var/lib/jenkins/workspace/${JOB_NAME}/bamboo.json"),"UTF-8"))
 //def resu = jsonSlurper.parse(reader1)
 
