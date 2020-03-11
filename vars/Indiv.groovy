@@ -28,7 +28,7 @@ def jsonObja = readJSON text: jsonStringa[i]
 int total=jsonObja.bitbucket.Individual_commits.Commit_count
  // println(jsonObja)
   println(total)
- 
+ println("bhavay")
 		    LIST.add(["toolName":name,"metric":"commits","value":total])
 	    println(LIST)}
       }
