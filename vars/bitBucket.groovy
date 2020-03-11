@@ -9,12 +9,12 @@ String a=jsonObj.scm.projects.project.repositories.repository.repo_name
 String repoName=a.replaceAll("\\[", "").replaceAll("\\]","");
 String b=jsonObj.scm.projects.project.project_key 
 String Key=b.replaceAll("\\[", "").replaceAll("\\]","");
-int ecount = jsonObj.config.emails.email.size()
+int ecount = jsonObj.riglet_info.auth_users.size()
 println("No of users "+ ecount)
 println(Key)
 println(repoName)
 // Date date = new Date() 
- withCredentials([usernamePassword(credentialsId: 'bitbucket_cred', passwordVariable: 'pass', usernameVariable: 'userId')]) {
+ withCredentials([usernamePassword(credentialsId: 'Bit', passwordVariable: 'pass', usernameVariable: 'userId')]) {
   sh "curl -X GET  -H -d  -u $userId:$pass http://18.224.68.30:7990/rest/api/1.0/projects/'${Key}'/repos/'${repoName}'/commits -o outputbitbucket.json"
  } 
 
