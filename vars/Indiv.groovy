@@ -24,7 +24,7 @@ List<String> jsonStringa= new ArrayList<String>();
 	  //  metric="commits"
 //def jsonStringa = bitbucket
 def jsonObja = readJSON text: jsonStringa[i]
-	    if(jsonObj.riglet_info.auth_users[K]==jsonObj.bitbucket.Individual_commits.Email)
+	    if(jsonObj.riglet_info.auth_users[k]==jsonObj.bitbucket.Individual_commits.Email)
 int total=jsonObja.bitbucket.Individual_commits.Commit_count
  // println(jsonObja)
   //println(total)
@@ -32,7 +32,7 @@ int total=jsonObja.bitbucket.Individual_commits.Commit_count
 	    LIST.add(["toolName":name,"metric":"commits","value":total])
       }
      }
-		JSON.add(["team_member_name":jsonObj.riglet_info.auth_users[K],"teamname":team,"metrics" : LIST])
+		JSON.add(["team_member_name":jsonObj.riglet_info.auth_users[k],"teamname":team,"metrics" : LIST])
 	}
 	
 def jsonBuilder = new groovy.json.JsonBuilder()
