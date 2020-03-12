@@ -11,8 +11,10 @@ List<String> jsonStringa= new ArrayList<String>();
 	//jsonStringa.add(sonar)
    List<String> LIST = new ArrayList<String>();
 	List<String> JSON = new ArrayList<String>();
+	List<String> JSON1 = new ArrayList<String>();
 	for(k=0;k<ecount;k++)
 	{
+		def email=jsonObj.riglet_info.auth_users[k]
    for(i=0;i<jsonStringa.size();i++)
   { 
     int score=0
@@ -24,27 +26,25 @@ List<String> jsonStringa= new ArrayList<String>();
 	  //  metric="commits"
 //def jsonStringa = bitbucket
 def jsonObja = readJSON text: jsonStringa[i]
-	     println("bhavay")
 	    
-	    if("a"=="a"){
-		     println("bhavay")
-		    println(jsonObj.riglet_info.auth_users[k])
-		    println(jsonObja.bitbucket.Individual_commits[k].Email)
-	    if(jsonObj.riglet_info.auth_users[k]==jsonObja.bitbucket.Individual_commits[k].Email){
+	    def resemail=jsonObja.bitbucket.Individual_commits[k].Email
+	    if(email==resemail){
 int total=jsonObja.bitbucket.Individual_commits.Commit_count
  // println(jsonObja)
   println(total)
  println("bhavay")
 		    LIST.add(["toolName":name,"metric":"commits","value":total])
-		    println(LIST)}}
+		    println(LIST)}
       }
      }
-		JSON.add(["team_member_name":jsonObj.riglet_info.auth_users[k],"teamname":team,"metrics" : LIST])
+		JSON1[k]=LIST.clone()
+		JSON.add(["team_member_name":email,"teamname":team,"metrics" : JSON[k]])
+		LIST.clear()
 	}
 	
 def jsonBuilder = new groovy.json.JsonBuilder()
 jsonBuilder(
- "team_members":JSON
+ JSON
   
 ) 
   
