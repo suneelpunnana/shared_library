@@ -29,7 +29,7 @@ int ecount = jsonObj.riglet_info.auth_users.size()
         def jsonObja= readJSON text: jsonStringa[i]
   //println(jsonObj)
   def total=jsonObja.bitbucket.Individual_commits[j].Commit_count
-	       def resemail=jsonObja.bitbucket.Individual_commits[k].Email
+	       def resemail=jsonObja.bitbucket.Individual_commits[j].Email
 	       if(email==resemail)
   {
     LIST.add(["toolName":name,"metricName":"commits","value":total])
