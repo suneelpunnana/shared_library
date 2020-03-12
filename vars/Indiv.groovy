@@ -28,6 +28,7 @@ def jsonObja = readJSON text: jsonStringa[i]
 	    
 	    if("a"=="a"){
 		     println("bhavay")
+		    println(jsonObj.riglet_info.auth_users[k])
 	    if(jsonObj.riglet_info.auth_users[k]==jsonObja.bitbucket.Individual_commits.Email){
 int total=jsonObja.bitbucket.Individual_commits.Commit_count
  // println(jsonObja)
