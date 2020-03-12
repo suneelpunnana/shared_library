@@ -84,7 +84,7 @@ jsonBuilder(
   
 ) 
   
-  File file = new File("/var/lib/jenkins/workspace/${JOB_NAME}/indivscore.json")
+  File file = new File("/var/lib/jenkins/workspace/${JOB_NAME}/Indivscore.json")
 file.write(jsonBuilder.toPrettyString())
     
   //println(JSON)
