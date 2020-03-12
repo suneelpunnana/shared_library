@@ -26,7 +26,7 @@ int ecount = jsonObj.riglet_info.auth_users.size()
       {
         name="bitbucket"
 	      //metric="commits"
-        def jsonObjc= readJSON text: jsonStringa[i]
+        def jsonObja= readJSON text: jsonStringa[i]
   //println(jsonObj)
   def total=jsonObja.bitbucket.Individual_commits[j].Commit_count
 	       def resemail=jsonObja.bitbucket.Individual_commits[k].Email
@@ -44,12 +44,12 @@ int ecount = jsonObj.riglet_info.auth_users.size()
      name="jenkins"
     //  def jsonStringb = bamboo
 	   // def jsonString1 = jsonStringa[i]
-	   def jsonObja = readJSON text: jsonStringa[i]
+	   def jsonObjb = readJSON text: jsonStringa[i]
 
   //println(jsonObja)
-  def scnt =jsonObja.JENKINS.individualsuccess[j].Success_cnt
-  def fcnt =jsonObja.JENKINS.individualfailure[j].Failure_cnt
- def email1=jsonObja.JENKINS.individualsuccess[j].email
+  def scnt =jsonObjb.JENKINS.individualsuccess[j].Success_cnt
+  def fcnt =jsonObjb.JENKINS.individualfailure[j].Failure_cnt
+ def email1=jsonObjb.JENKINS.individualsuccess[j].email
       
  // def res=bamboo1.bamboo.teamsuccessbuild_cnt
  // def obj = JSON.parse(bamboo1)
