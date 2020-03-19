@@ -135,8 +135,9 @@ file.write(jsonBuilder.toPrettyString())
      def jsonBuilder = new groovy.json.JsonBuilder()
 
 jsonBuilder(
-   JSON
-  
+   "teamName":team,
+  "metrics" : LIST,
+	JSON
 ) 
   
   File file = new File("/var/lib/jenkins/workspace/${JOB_NAME}/Indivscore.json")
