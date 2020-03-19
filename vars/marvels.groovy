@@ -66,7 +66,7 @@ file.write(jsonBuilder.toPrettyString())
 }*/
 
  List<String> JSON = new ArrayList<String>();
-  List<String> LIST = new ArrayList<String>();
+  List<String> LIST1= new ArrayList<String>();
   List<String> JSON1 = new ArrayList<String>();
 	
 	 for(j=0;j<ecount;j++)
@@ -88,7 +88,7 @@ file.write(jsonBuilder.toPrettyString())
 	       if(email==resemail)
   {
 	  def total=jsonObja.bitbucket.Individual_commits[j].Commit_count
-    LIST.add(["toolName":name,"metricName":"commits","value":total])
+    LIST1.add(["toolName":name,"metricName":"commits","value":total])
   }
       }
 	  
@@ -117,8 +117,8 @@ file.write(jsonBuilder.toPrettyString())
    // LIST.add(["toolName":name,"metricName":"total_builds","value":total])
 	    
  
-	   LIST.add(["toolName":name,"metricName":"successful_builds","value":scnt])
-	    LIST.add(["toolName":name,"metricName":"failure_builds","value":fcnt])
+	   LIST1.add(["toolName":name,"metricName":"successful_builds","value":scnt])
+	    LIST1.add(["toolName":name,"metricName":"failure_builds","value":fcnt])
   }
    }
 	   
@@ -127,7 +127,7 @@ file.write(jsonBuilder.toPrettyString())
 	   JSON1[j]=LIST.clone()
 	   
    JSON.add(["teamMemberName":email,"teamName":team,"metrics":JSON1[j]])
-    LIST.clear()
+    LIST1.clear()
 	//reward=0    
 	   
     }
