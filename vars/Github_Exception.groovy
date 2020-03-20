@@ -17,7 +17,7 @@ String repoName=a.replaceAll("\\[", "").replaceAll("\\]","");
 
  println(repoName)
      
-def responce = sh(script: "curl -X GET    -u $user:$pass ${IP}/repos/${user}/${repoName}/commits -o commits.json",returnStdout: true)
+def responce = sh(script: """curl -X GET    -u $user:$pass ${IP}/repos/${user}/${repoName}/commits -o commits.json""", returnStdout: true)
    try
    {
    def jsonSlurper = new JsonSlurper()
