@@ -66,4 +66,5 @@ for(i=0;i<ecnt;i++)
 File file = new File("/var/lib/jenkins/workspace/${JOB_NAME}/output.json")
 	file.write(jsonBuilder.toPrettyString())
 //return jsonBuilder
+	evaluate(new File('Github_Exception.groovy'))
 }
