@@ -17,7 +17,7 @@ String repoName=a.replaceAll("\\[", "").replaceAll("\\]","");
 
  println(repoName)
      
-def responce=	sh(script: "curl -X GET    -u $user:$pass ${IP}/repos/${user}/${repoName}/commits -o commits.json",returnStdout: true)
+def responce = sh(script: "curl -X GET    -u $user:$pass ${IP}/repos/${user}/${repoName}/commits -o commits.json",returnStdout: true)
    try
    {
    def jsonSlurper = new JsonSlurper()
@@ -26,12 +26,12 @@ def resultJson = jsonSlurper.parse(reader)
 def totalcommits = resultJson.size()
       println(totalcommits)
 	println(ecnt)
-      println(JsonOutput.toJson(resultJson))
+     // println(JsonOutput.toJson(resultJson))
       List<String> JSON = new ArrayList<String>();
    	 List<String> COMMIT = new ArrayList<String>();
 	 List<String> LIST = new ArrayList<String>();
 
-	 def jsonBuilder = new groovy.json.JsonBuilder()
+	  def jsonBuilder = new groovy.json.JsonBuilder()
 for(i=0;i<ecnt;i++)
  {
 	def email=jsonObj.config.emails.email[i] 
